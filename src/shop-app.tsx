@@ -32,7 +32,7 @@ export const ShopApp: React.FC<{}> = () => {
 
   const favClick = (index: number) =>  {
     const prods = products;
-    const idx = index
+    const idx = index;
     let currentFavs = numFavorites;
     let totalFavs: any;
 
