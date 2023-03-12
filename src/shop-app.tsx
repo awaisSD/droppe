@@ -97,15 +97,14 @@ export const ShopApp: React.FC<{}> = () => {
 
         <>
            <span
-              className={['container', styles.main].join(' ')}
-              style={{margin: '50px inherit', display: 'flex', justifyContent: 'space-evenly'}}
+              className={['container', styles.main, styles.mainCustom].join(' ')}
            >
-            <img src={img1} style={{maxHeight: "15em", display: 'block'}} />
-            <img src={img2} style={{maxHeight: "15rem", display: 'block'}} />
+            <img src={img1} className={styles.img1} alt = "img1 alt"/>
+            <img src={img2} className={styles.img2} alt = "img2 alt"/>
            </span>
         </>
 
-        <div className={['container', styles.main].join(' ')} style={{paddingTop: 0}}>
+        <div className={['container', styles.main, styles.paddingTop0].join(' ')}>
           <div className={styles.buttonWrapper}>
             <span role="button">
                <Button
