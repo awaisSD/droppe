@@ -8,18 +8,15 @@ interface IPostsProps {
   onFav: (title: string) => void;
 }
 
+export const ProductList: React.FC<IPostsProps> = ({products, onFav}) => {
 
-export default class Posts extends React.Component<IPostsProps, {}> {
-  constructor(props: any) { super(props) }
-  render(){
-    let productsarr = []
-      for (const [i, p] of this.props.products.entries()) {
-        productsarr.push(
-          <Product key={i} index={i} product={p} onFav={this.props.onFav} />
-        );
-    }
-    return <div>{lodash.reverse(productsarr)}</div>
+  let productsarr = []
+  for (const [i, p] of products.entries()) {
+    productsarr.push(
+      <Product key={i} index={i} product={p} onFav={onFav} />
+    );
   }
+  return <div>{lodash.reverse(productsarr)}</div>;
 }
 
 export const Product: React.FC<{
