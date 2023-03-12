@@ -3,9 +3,9 @@ import lodash from 'lodash'
 import { FaStar } from "react-icons/fa";
 import styles from "./product-list-components.module.css";
 
-interface IPostsProps {
+type IPostsProps = {
   products: any;
-  onFav: (title: string) => void;
+  onFav: (index: number) => void;
 }
 
 export const ProductList: React.FC<IPostsProps> = ({products, onFav}) => {
@@ -22,8 +22,8 @@ export const ProductList: React.FC<IPostsProps> = ({products, onFav}) => {
 export const Product: React.FC<{
   index: number;
   product: { title: string; description: string; price: number; isFavorite: boolean; rating: {rate: number; count: number} };
-  onFav: (title: string) => void;
-}> = ({ product, onFav }) => {
+  onFav: (index: number) => void;
+}> = ({ index, product, onFav }) => {
   const {product: productClass, productBody, actionBarItem, actionBarItemLabel} = styles
   // Problem: Now product title can be too long, I just put overflowX as fix now
   return (
@@ -47,7 +47,7 @@ export const Product: React.FC<{
           }`}
           role="button"
           onClick={() => {
-              onFav(product.title);
+              onFav(index);
           }}
         >
           <FaStar /> <span className={actionBarItemLabel}>{!!(!!(product.isFavorite)) ? 'Remove from favorites' : 'Add to favorites'}</span>
