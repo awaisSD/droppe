@@ -3,35 +3,32 @@ import lodash from 'lodash'
 import { FaStar } from "react-icons/fa";
 import styles from "./product-list-components.module.css";
 
-interface IPostsProps {
+type IPostsProps = {
   products: any;
-  onFav: (title: string) => void;
+  onFav: (index: number) => void;
 }
 
 
-export default class Posts extends React.Component<IPostsProps, {}> {
-  constructor(props: any) { super(props) }
-  render(){
-    let productsarr = []
-      for (const [i, p] of this.props.products.entries()) {
-        productsarr.push(
-          <Product key={i} index={i} product={p} onFav={this.props.onFav} />
-        );
-    }
-    return <div>{lodash.reverse(productsarr)}</div>
+export const ProductList: React.FC<IPostsProps> = ({products, onFav}) => {
+
+  let productsarr = []
+  for (const [i, p] of products.entries()) {
+    productsarr.push(
+      <Product key={i} index={i} product={p} onFav={onFav} />
+     );
   }
+  return <div>{lodash.reverse(productsarr)}</div>;
 }
 
 export const Product: React.FC<{
   index: number;
   product: { title: string; description: string; price: number; isFavorite: boolean; rating: {rate: number; count: number} };
-  onFav: (title: string) => void;
-}> = ({ product, onFav }) => {
-  const {product: productClass, productBody, actionBarItem, actionBarItemLabel} = styles
-  // Problem: Now product title can be too long, I just put overflowX as fix now
+  onFav: (index: number) => void;
+}> = ({ index, product, onFav }) => {
+  const {product: productClass, productTitle, productBody, actionBar, actionBarItem, actionBarItemLabel} = styles
   return (
-    <span className={productClass} style={{display: 'inline-block', overflowX: 'scroll', float: 'none', clear: 'both'}}>
-      <span className={styles['product-title']} style={{overflowX: 'hidden'}}>{product.title}</span>
+    <span className={productClass}>
+      <span className={productTitle}>{product.title}</span>
 
       <p><strong>Rating: {product.rating ? `${product.rating.rate}/5` : ''}</strong></p>
 
@@ -43,17 +40,17 @@ export const Product: React.FC<{
         {product.description}
      </p>
 
-      <span className={styles['action_bar']} style={{display: 'table', width: "100%"}}>
+      <span className={actionBar}>
         <span
           className={`${actionBarItem} ${
             product.isFavorite ? "active" : ""
           }`}
           role="button"
           onClick={() => {
-              onFav(product.title);
+              onFav(index);
           }}
         >
-          <FaStar /> <span className={actionBarItemLabel}>{!!(!!(product.isFavorite)) ? 'Remove from favorites' : 'Add to favorites'}</span>
+          <FaStar /> <span className={actionBarItemLabel}>{(product.isFavorite) ? 'Remove from favorites' : 'Add to favorites'}</span>
         </span>
       </span>
     </span>

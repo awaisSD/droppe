@@ -45,6 +45,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         placeholder="Title..."
         defaultValue=""
         className={styles.input}
+        role="input"
       />
 
       <span className={styles.label}>Product details: *</span>
@@ -54,6 +55,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         placeholder="Price..."
         defaultValue=""
         className={styles.input}
+        role="input"
       />
 
       <textarea
@@ -61,6 +63,7 @@ export const Form: React.FC<IFormProps> = (props) => {
         placeholder="Start typing product description here..."
         defaultValue=""
         className={styles.textarea}
+        role="text-area"
       />
 
       <Button>Add a product</Button>

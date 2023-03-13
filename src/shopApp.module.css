@@ -75,3 +75,23 @@
   top: 0;
   right: 0;
 }
+
+.mainCustom {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 50px inherit;
+}
+
+.img1 {
+    max-height: 15em;
+    display: block;
+}
+
+.img2 {
+  max-height: 15rem;
+  display: block;
+}
+
+.paddingTop0 {
+  padding-top: 0px;
+}
